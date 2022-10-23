@@ -20,7 +20,7 @@ echo "Configuring PHP $PHP_VERSION ... "
 #iconv and opcache seem to have problems with being in a static build
 CFLAGS=-fPIC ./configure
 #patch the Makefile
-sed -e '/^BUILD_C/s/ -export-dynamic//g' -e 's/^EXTRA_LIBS = .*/TODO/g' -e '/^EXTRA_LDFLAGS_PROGRAM/s/$/ -static-pie/g' -i Makefile
+sed -e '/^BUILD_C/s/ -export-dynamic//g' -e 's/^EXTRA_LIBS = .*/EXTRA_LIBS = -lrt -lxml2 -lsqlite3 -lz -llzma -licuuc -licudata -lstdc++ -lm/g' -e '/^EXTRA_LDFLAGS_PROGRAM/s/$/ -static-pie/g' -i Makefile
 echo ""
 
 echo "Building PHP $PHP_VERSION ... "
